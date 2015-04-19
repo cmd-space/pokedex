@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Original Pokemon</title>
+	<style>
+		div
+		{
+			display: inline-block;
+		}
+		#pokemon
+		{
+			max-width: 60em;
+		}
+		#dex
+		{
+			border: 1em solid red;
+			vertical-align: top;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+		$(document).ready(function()
+		{
+			var poke = '';
+			for(var p = 1; p <= 151; p++)
+			{
+				poke += '<img id="'+p+'" src="http://pokeapi.co/media/img/'+p+'.png">';
+			}
+			$('#pokemon').html(poke);
+			$('img').click(function()
+			{
+				var id = $(this).attr('id');
+				alert(id);
+				$.get('http://pokeapi.co/api/v1/pokemon/'+id, function(pokemon)
+				{
+					var pokedex = '';
+					pokedex += '<h3>'+pokemon.name+'</h3>';
+				}, 'json');
+			})
+		})
+	</script>
+</head>
+<body>
+	<div id='pokemon'></div>
+	<div id='dex'>hi</div>
+</body>
+</html>

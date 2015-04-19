@@ -35,7 +35,15 @@
 				$.get('http://pokeapi.co/api/v1/pokemon/'+id, function(pokemon)
 				{
 					var pokedex = '';
-					pokedex += '<h3>'+pokemon.name+'</h3>';
+					pokedex += '<h2>'+pokemon.name+'</h2>';
+					pokedex += '<img src="http://pokeapi.co/media/img/'+id+'.png">';
+					pokedex += '<h4>Types</h4>';
+					pokedex += '<ul>';
+					for(var i = 0; i < pokemon.types.length; i++)
+					{
+						pokedex += '<li>'+pokemon.types[i];+'</li>';
+					}
+					$('#dex').html(pokedex);
 				}, 'json');
 			})
 		})
